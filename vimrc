@@ -1,6 +1,6 @@
 "FROM: http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-lines
 filetype off
-"call pathogen#runtime_append_all_bundles()
+call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
 set modelines=0
 
