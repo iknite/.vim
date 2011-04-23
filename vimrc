@@ -1,8 +1,13 @@
-"FROM: http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-lines
+"SOURCE http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-line/
+"SOURCE http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+
+set nocompatible
+autocmd!
 filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 filetype plugin indent on
-set modelines=0
+syntax on
 
 set tabstop=4
 set shiftwidth=4
@@ -21,9 +26,12 @@ set visualbell
 set cursorline
 set ttyfast
 
+set incsearch
+
 "Shorhortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
  
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
+colorscheme darkrobot

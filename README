@@ -9,3 +9,16 @@ Switch to the `~/.vim` directory, and fetch submodules:
     cd ~/.vim
 	git submodule init
 	git submodule update
+
+Create the proper mac terminal installation:
+	brew install macvim
+	brew linkapps
+	mvim -v
+	alias vim="mvim -v"
+
+ACTUAL SUBMODULES:
+	snipmate
+	surround
+	fugutive
+	php-vim
+	
