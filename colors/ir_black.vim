@@ -142,6 +142,11 @@ hi link SpecialComment  Special
 hi link Debug           Special
 
 
+hi NonText guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
+
+
+
 " Special for Ruby
 hi rubyRegexp                  guifg=#B18A3D      guibg=NONE      gui=NONE      ctermfg=brown          ctermbg=NONE      cterm=NONE
 hi rubyRegexpDelimiter         guifg=#FF8000      guibg=NONE      gui=NONE      ctermfg=brown          ctermbg=NONE      cterm=NONE
