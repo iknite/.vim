@@ -14,11 +14,12 @@
 "   :help
 "   http://amix.dk/vim/vimrc.html
 "   http://vimcasts.org/
+"   http://jonatkinson.co.uk/removing-toolbar-macvim/ 
 "   
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ""GENERAL OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible "Actally redundant, if you load ~/.vimrc (this file) is nocompatible mode
+set nocompatible 
 autocmd!
 filetype off
 call pathogen#runtime_append_all_bundles() "Every plugin is in ~/.vim/bundle/ folders
@@ -30,10 +31,12 @@ set ai "Auto ident
 set si "smart Indent
 " Only do this part when compiled with support for autocommands
 
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+set ruler		" show the cursor position all the time
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set noexpandtab
+
 if has("autocmd")
   " Enable file type detection
   filetype on
@@ -50,6 +53,12 @@ if has("autocmd")
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 endif
+
+" Graphical editor running
+if has("gui_running")
+	set guioptions-=T
+endif
+
 
 set encoding=utf-8
 set scrolloff=3
