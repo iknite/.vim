@@ -13,3 +13,16 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/minibufexpl.vim"]
+	path = bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim.git 
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url =  https://github.com/majutsushi/tagbar.git
+[submodule "bundle/headlights"]
+	path = bundle/headlights
+	url = https://github.com/mbadran/headlights.git 
+[submodule "bundle/xmledit"]
+	path = bundle/xmledit
+	url = https://github.com/sukima/xmledit.git
+
