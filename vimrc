@@ -67,7 +67,6 @@ filetype plugin indent on
 "Indenting options
 set ai "Auto ident
 set si "smart Indent
-" Only do this part when compiled with support for autocommands
 
 set ruler " show the cursor position all the time
 set tabstop=4
@@ -104,13 +103,16 @@ endif
 " Graphical editor running
 if has("gui_running")
 	set guioptions-=T
+	colorscheme ir_black
+	"set guifont=Liberation\ Mono:h12,Monaco:h12
+	"set transparency=12
+else
+	colorscheme blackboard
 endif
 
 " Coloring Options
 set background=dark 
-set transparency=12
 "set fu "fullscreen mode
-colorscheme ir_black
 
 set encoding=utf-8
 set scrolloff=3
@@ -121,7 +123,6 @@ set wildmenu
 set wildmode=list:longest
 set cursorline
 set ttyfast
-set gfn=Monaco:h12
 set number
 
 "SEARCH OPTIONS
@@ -135,6 +136,9 @@ set foldnestmax=3
 "Leader configuration
 let mapleader = ","
 let g:mapleader = ","
+
+"Shortcut to outside paste
+nmap <leader>p "+gP<CR>
 
 "Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -157,7 +161,7 @@ map <leader>d :bdelete<cr>
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
 
-" Use the arrows to something usefull
+" Cycle throught buffers
 map <C-j> :bn<cr>
 map <C-k> :bp<cr>
 
