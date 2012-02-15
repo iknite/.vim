@@ -107,6 +107,7 @@ if has("gui_running")
 	"set guifont=Liberation\ Mono:h12,Monaco:h12
 	"set transparency=12
 else
+	colorscheme ir_black
 	colorscheme blackboard
 endif
 
@@ -154,6 +155,10 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Normalized shortcuts
+map <C-s> :w<CR>
+"map <C-w> :bd<CR>
 
 " Close the current buffer
 map <leader>d :bdelete<cr>
