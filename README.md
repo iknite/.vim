@@ -18,7 +18,8 @@
 ## plugins 
 ### Command-t (pathogen approach)
 	 cd ~/.vim/bundle/command-t/ruby/command-t/
-	 rake make
+	 ruby extconf.rb
+	 make
 ### Javascriptlint.vim
 Install from http://www.javascriptlint.com/download.htm
 	 sudo cp ~/Downloads/jsl-0.3.0-mac/jsl /opt/local/bin
