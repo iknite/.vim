@@ -31,7 +31,7 @@
 "		url = https://github.com/scrooloose/nerdtree.git
 "	[submodule "bundle/nerdcommenter"]
 "		path = bundle/nerdcommenter
-"ls -la
+"
 "url = https://github.com/scrooloose/nerdcommenter.git
 "	[submodule "bundle/minibufexpl.vim"]
 "		path = bundle/minibufexpl.vim
