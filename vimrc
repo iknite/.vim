@@ -1,16 +1,17 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " @author: Enrique Paredes
-" @version:0.1
+" @version:0.5
 "
 " @description: 
 "	Configuration options for macvim + terminal optimization. 
 "
 " @licensing:
-"	Copyright ©2011 <MIT License>http://www.opensource.org/licenses/mit-license.php
+"	Copyright ©2011 
+"	<MIT License>http://www.opensource.org/licenses/mit-license.php
 "
 " @resources&credits:
 "	http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-line/
-"	http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+"	http://vimcasts.org/e/27
 "	:help
 "	http://amix.dk/vim/vimrc.html
 "	http://vimcasts.org/
@@ -20,47 +21,19 @@
 "	[submodule "bundle/snipmate"]
 "		path = bundle/snipmate
 "		url = https://github.com/msanders/snipmate.vim.git
-"	[submodule "bundle/surround"]
-"		path = bundle/surround
-"		url = https://github.com/tpope/vim-surround.git
-"	[submodule "bundle/fugitive"]
-"		path = bundle/fugitive
-"		url = https://github.com/tpope/vim-fugitive.git
-"	[submodule "bundle/nerdtree"]
-"		path = bundle/nerdtree
-"		url = https://github.com/scrooloose/nerdtree.git
 "	[submodule "bundle/nerdcommenter"]
 "		path = bundle/nerdcommenter
-"
-"url = https://github.com/scrooloose/nerdcommenter.git
+"		url = https://github.com/scrooloose/nerdcommenter.git
 "	[submodule "bundle/minibufexpl.vim"]
 "		path = bundle/minibufexpl.vim
 "		url = https://github.com/fholgado/minibufexpl.vim.git 
-"	[submodule "bundle/tagbar"]
-"		path = bundle/tagbar
-"		url = https://github.com/majutsushi/tagbar.git
-"	[submodule "bundle/headlights"]
-"		path = bundle/headlights
-"		url = https://github.com/mbadran/headlights.git 
-""	[submodule "bundle/xmledit"]
-"		path = bundle/xmledit
-"		url = https://github.com/sukima/xmledit.git
-""	[submodule "bundle/pyflakes-vim"]
-"		path = bundle/pyflakes-vim
-"		url = https://github.com/kevinw/pyflakes-vim.git
-"	[submodule "bundle/javaScriptLint.vim"]
-"		path = bundle/javaScriptLint.vim
-"		url = https://github.com/joestelmach/javaScriptLint.vim.git
-"	svn co "bundle/languagetool"
-"		path = bundle/languagetool
-"		url = https://languagetool.svn.sourceforge.net/svnroot/languagetool/trunk/JLanguageTool
 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""GENERAL OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""GENERAL OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible 
 autocmd!
-call pathogen#runtime_append_all_bundles() "Every plugin is in ~/.vim/bundle/ folders
+call pathogen#runtime_append_all_bundles() "Every plugin is in ~/.vim/bundle/ 
 call pathogen#helptags()
 filetype plugin indent on
 
@@ -69,10 +42,11 @@ set ai "Auto ident
 set si "smart Indent
 
 set ruler " show the cursor position all the time
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set ts=4
+set sw=4
+set sts=4
 set noexpandtab
+set laststatus=2
 syntax on
 
 if has("autocmd")
@@ -84,28 +58,32 @@ if has("autocmd")
 	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 	" Customisations based on house-style (arbitrary)  
+	autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
 	autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
 	autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
-	autocmd FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+	autocmd FileType python setlocal ts=2 expandtab sw=2 sts=2
 
 	" Treat .rss files as XML
 	autocmd BufNewFile,BufRead *.rss setfiletype xml
 	
-	"JAVASCRIPT SECTION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-	autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+	"JAVASCRIPT SECTION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd FileType javascript setl fen
 	autocmd FileType javascript setl nocindent
 	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 	"autocmd FileType javascript inoremap <buffer> $r return
-	"autocmd FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
+	"autocmd FileType javascript inoremap <buffer> $f //--- PH -----------------
 endif
 
-" Graphical editor running
-if has("gui_running")
+if has("gui_running") " Graphical editor running
 	set guioptions-=T
 	colorscheme ir_black
-	"set guifont=Liberation\ Mono:h12,Monaco:h12
+	set guifont=Liberation\ Mono:h12,Monaco:h15
+	"set colorcolumn=80
+	match ErrorMsg '\%>80v.\+'
 	"set transparency=12
+	set mouse=a "Mouse Configuration
+	set mousefocus
 else
 	colorscheme ir_black
 	colorscheme blackboard
@@ -133,7 +111,7 @@ set ignorecase
 set foldmethod=indent
 set foldnestmax=3
 
-""KEYBOARD OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""KEYBOARD OPTIONS""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Leader configuration
 let mapleader = ","
 let g:mapleader = ","
@@ -175,10 +153,6 @@ set listchars=tab:▸\ ,eol:¬
 
 "Onmi Completion options
 set ofu=syntaxcomplete#Complete
-
-"Mouse Configuration
-set mouse=a
-set mousefocus
 
 set hlsearch "Highlight search things
 

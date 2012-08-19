@@ -43,5 +43,5 @@
 	url = git://git.wincent.com/command-t.git
 
 [submodule "bundle/syntastic"]
-	path = bundle/syntastic 
-	url = https://github.com/scrooloose/syntastic.git  
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
