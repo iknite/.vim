@@ -18,15 +18,23 @@
 "	http://jonatkinson.co.uk/removing-toolbar-macvim/ 
 "	
 " @plugins:
-"	[submodule "bundle/snipmate"]
-"		path = bundle/snipmate
-"		url = https://github.com/msanders/snipmate.vim.git
-"	[submodule "bundle/nerdcommenter"]
-"		path = bundle/nerdcommenter
-"		url = https://github.com/scrooloose/nerdcommenter.git
-"	[submodule "bundle/minibufexpl.vim"]
-"		path = bundle/minibufexpl.vim
-"		url = https://github.com/fholgado/minibufexpl.vim.git 
+
+"[submodule "bundle/nerdcommenter"]
+	"path = bundle/nerdcommenter
+	"url = https://github.com/scrooloose/nerdcommenter.git
+
+"[submodule "bundle/minibufexpl.vim"]
+	"path = bundle/minibufexpl.vim
+	"url = https://github.com/fholgado/minibufexpl.vim.git 
+
+"[submodule "bundle/command-t"]
+	"path = bundle/command-t
+	"url = git://git.wincent.com/command-t.git
+
+"[submodule "bundle/syntastic"]
+	"path = bundle/syntastic
+	"url = https://github.com/scrooloose/syntastic.git
+
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
