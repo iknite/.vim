@@ -16,26 +16,7 @@
 "	http://amix.dk/vim/vimrc.html
 "	http://vimcasts.org/
 "	http://jonatkinson.co.uk/removing-toolbar-macvim/ 
-"	
-" @plugins:
-
-"[submodule "bundle/nerdcommenter"]
-	"path = bundle/nerdcommenter
-	"url = https://github.com/scrooloose/nerdcommenter.git
-
-"[submodule "bundle/minibufexpl.vim"]
-	"path = bundle/minibufexpl.vim
-	"url = https://github.com/fholgado/minibufexpl.vim.git 
-
-"[submodule "bundle/command-t"]
-	"path = bundle/command-t
-	"url = git://git.wincent.com/command-t.git
-
-"[submodule "bundle/syntastic"]
-	"path = bundle/syntastic
-	"url = https://github.com/scrooloose/syntastic.git
-
-"
+"	"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ""GENERAL OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -43,6 +24,7 @@ set nocompatible
 autocmd!
 call pathogen#runtime_append_all_bundles() "Every plugin is in ~/.vim/bundle/ 
 call pathogen#helptags()
+"call pathogen#infect()
 filetype plugin indent on
 
 "Indenting options
@@ -67,7 +49,7 @@ if has("autocmd")
 
 	" Customisations based on house-style (arbitrary)  
 	autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
-	autocmd FileType html setlocal ts=2 sts=2 sw=2 noexpandtab
+	autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab
 	autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
 	autocmd FileType python setlocal ts=2 expandtab sw=2 sts=2
 
@@ -86,10 +68,10 @@ endif
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
 	colorscheme ir_black
-	set guifont=Liberation\ Mono:h12,Monaco:h15
-	"set colorcolumn=80
-	match ErrorMsg '\%>80v.\+'
-	"set transparency=12
+	set guifont=Liberation\ Mono:h12,Monaco:h12
+	"set colorcolumn=100
+	match ErrorMsg '\%>100v.\+'
+	set transparency=6
 	set mouse=a "Mouse Configuration
 	set mousefocus
 else
@@ -114,7 +96,7 @@ set number
 
 "SEARCH OPTIONS
 set incsearch
-set ignorecase
+set smartcase
 
 set foldmethod=indent
 set foldnestmax=3
@@ -135,6 +117,12 @@ nmap <leader>v :edit ~/.vim/vimrc<CR>
  
 "tagbar toogle
 nmap <leader>o :TagbarToggle <CR>
+
+"NerdTree
+nmap <leader>e :NERDTreeToggle <CR>
+
+"CommandT Flush
+nmap <leader>T :CommandTFlush <CR>
 
 " Smart way to move btw. windows
 map <C-j> <C-W>j
@@ -173,3 +161,8 @@ set undodir=.
 set undofile 
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+let g:syntastic_javascript_checker= "gjslint"
+let g:syntastic_javascript_gjslint_conf = "--strict --ignore_errors=110,200"
+
+
