@@ -18,6 +18,6 @@
 	 ruby extconf.rb
 	 make
 ----
-Enrique 'iknite' Paredes @ 2012
+iknite @ 2013
 v0.5
 
