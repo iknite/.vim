@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " @author: Enrique Paredes
-" @version:0.5
+" @version:0.6
 "
 " @description: 
 "	Configuration options for macvim + terminal optimization. 
@@ -68,10 +68,14 @@ endif
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
 	colorscheme ir_black
-	set guifont=Liberation\ Mono:h12,Monaco:h12
-	"set colorcolumn=100
+	if has("gui_gtk2")
+		set guifont=Droid\ Sans\ Mono\ 10
+	else
+		set guifont=Monaco:h14
+	end
+	"set colorcolumn=11
 	match ErrorMsg '\%>100v.\+'
-	set transparency=6
+
 	set mouse=a "Mouse Configuration
 	set mousefocus
 else
