@@ -26,7 +26,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Installing vim config"
-git clone git://github.com/iknite/vimconfig.git ~/.vim
+git clone git@github.com:iknite/vimconfig.git ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
 cd ~/.vim
