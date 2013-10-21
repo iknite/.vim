@@ -10,7 +10,7 @@ gvim=`which gvim 2>&1`
 if [ $? -ne 0 ]; then
 	echo "Installing GVIM"
 	case $( uname -s ) in
-		Linux) sudo apt-get install vim-gnome ruby-dev;;
+		Linux) sudo apt-get -y install vim-gnome ruby-dev;;
 
 		Darwin) 
 			brew=`which brew 2>&1`
