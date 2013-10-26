@@ -67,14 +67,15 @@ endif
 
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
-	colorscheme ir_black
+	colorscheme Tomorrow-Night-Eighties
 	if has("gui_gtk2")
-		set guifont=Droid\ Sans\ Mono\ 10
+		set guifont=Source\ Code\ Pro\ Semibold:h13Droid\ Sans\ Mono\ 10
 	else
-		set guifont=Monaco:h14
+		set guifont=Source\ Code\ Pro\ Semibold:h13,Monaco:h14
 	end
-	"set colorcolumn=11
-	match ErrorMsg '\%>100v.\+'
+	set linespace=-1
+	set colorcolumn=81
+	"match ErrorMsg '\%>100v.\+'
 
 	set mouse=a "Mouse Configuration
 	set mousefocus
@@ -155,6 +156,7 @@ set listchars=tab:▸\ ,eol:¬
 set ofu=syntaxcomplete#Complete
 
 set hlsearch "Highlight search things
+set wildignore=*.obj,*.exe,*.pyc,*.pyo,*.pyx,*.*~,*.sw* 
 
 "Error managing
 set visualbell
@@ -166,7 +168,9 @@ set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
-let g:syntastic_javascript_checker= "gjslint"
+let g:syntastic_javascript_checker= "jshint"
 let g:syntastic_javascript_gjslint_conf = "--strict --ignore_errors=110,200"
 
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
