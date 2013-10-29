@@ -1,22 +1,23 @@
-#[submodule "bundle/snipmate"]
-#	path = bundle/snipmate
-#	url = https://github.com/msanders/snipmate.vim.git
-
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+	url = git@github.com:scrooloose/nerdtree.git
 
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
+	url = git@github.com:scrooloose/nerdcommenter.git
 
 [submodule "bundle/command-t"]
 	path = bundle/command-t
-	url = git://git.wincent.com/command-t.git
+	url = https://git.wincent.com/command-t.git
 
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
+	url = git@github.com:scrooloose/syntastic.git
+
 [submodule "bundle/sparkup"]
 	path = bundle/sparkup
-	url = https://github.com/tristen/vim-sparkup.git
+	url = git@github.com:tristen/vim-sparkup.git
+
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git

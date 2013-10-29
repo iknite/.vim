@@ -69,7 +69,7 @@ if has("gui_running") " Graphical editor running
 	set guioptions-=T
 	colorscheme Tomorrow-Night-Eighties
 	if has("gui_gtk2")
-		set guifont=Source\ Code\ Pro\ Semibold:h13Droid\ Sans\ Mono\ 10
+		set guifont=Source\ Code\ Pro\ Semibold\ 10,Droid\ Sans\ Mono\ 10
 	else
 		set guifont=Source\ Code\ Pro\ Semibold:h13,Monaco:h14
 	end
@@ -80,8 +80,7 @@ if has("gui_running") " Graphical editor running
 	set mouse=a "Mouse Configuration
 	set mousefocus
 else
-	colorscheme ir_black
-	colorscheme blackboard
+	colorscheme Tomorrow-Night-Eighties
 endif
 
 " Coloring Options
@@ -172,5 +171,6 @@ let g:syntastic_javascript_checker= "jshint"
 let g:syntastic_javascript_gjslint_conf = "--strict --ignore_errors=110,200"
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_left_sep = ' '
+let g:airline_right_sep = '|'
+
