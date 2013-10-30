@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " @author: Enrique Paredes
 " @version:0.6
 "
@@ -67,6 +67,7 @@ endif
 
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
+	set guioptions-=r
 	colorscheme Tomorrow-Night-Eighties
 	if has("gui_gtk2")
 		set guifont=Source\ Code\ Pro\ Semibold\ 10,Droid\ Sans\ Mono\ 10
@@ -80,6 +81,7 @@ if has("gui_running") " Graphical editor running
 	set mouse=a "Mouse Configuration
 	set mousefocus
 else
+	set t_Co=256
 	colorscheme Tomorrow-Night-Eighties
 endif
 
@@ -148,6 +150,14 @@ map <leader>ba :1,300 bd!<cr>
 map <C-j> :bn<cr>
 map <C-k> :bp<cr>
 
+" CTRL+C, CTRL+V
+vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>
+
+" Smash escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
@@ -167,10 +177,20 @@ set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
-let g:syntastic_javascript_checker= "jshint"
-let g:syntastic_javascript_gjslint_conf = "--strict --ignore_errors=110,200"
+let g:syntastic_check_on_open=1
+map <leader>n :lnext<cr>
+map <leader>N :lprev<cr>
+let g:syntastic_error_symbol = '▸'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '~'
+let g:syntastic_style_warning_symbol='-'
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_left_sep = ' '
-let g:airline_right_sep = '|'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:bufferline_echo=0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
 
