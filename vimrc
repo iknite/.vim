@@ -24,7 +24,6 @@ set nocompatible
 autocmd!
 call pathogen#runtime_append_all_bundles() "Every plugin is in ~/.vim/bundle/ 
 call pathogen#helptags()
-"call pathogen#infect()
 filetype plugin indent on
 
 "Indenting options
@@ -67,6 +66,7 @@ endif
 
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
+	set guioptions-=m
 	set guioptions-=r
 	colorscheme Tomorrow-Night-Eighties
 	if has("gui_gtk2")
@@ -87,6 +87,7 @@ endif
 
 " Coloring Options
 set background=dark 
+set list!
 "set fu "fullscreen mode
 
 set encoding=utf-8
@@ -126,15 +127,6 @@ nmap <leader>o :TagbarToggle <CR>
 
 "NerdTree
 nmap <leader>e :NERDTreeToggle <CR>
-
-"CommandT Flush
-nmap <leader>T :CommandTFlush <CR>
-
-" Smart way to move btw. windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " Normalized shortcuts
 map <C-s> :w<CR>
@@ -178,19 +170,19 @@ set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 let g:syntastic_check_on_open=1
-map <leader>n :lnext<cr>
-map <leader>N :lprev<cr>
 let g:syntastic_error_symbol = '▸'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '~'
 let g:syntastic_style_warning_symbol='-'
+" cycle through errors
+map <C-n> :ce<cr>
+map <C-N> :cn<cr>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:bufferline_echo=0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-
 
