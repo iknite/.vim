@@ -163,6 +163,9 @@ set wildignore=*.obj,*.exe,*.pyc,*.pyo,*.pyx,*.*~,*.sw*
 set visualbell
 set errorbells
 
+"delayed super cow powers
+cmap w!! %!sudo tee > /dev/null %
+
 "Persistent undo
 set undodir=.
 set undofile 
