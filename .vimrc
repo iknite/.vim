@@ -1,12 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " @author: Enrique Paredes
-" @version:0.6
+" @version:0.1.7
 "
 " @description: 
 "	Configuration options for macvim + terminal optimization. 
 "
 " @licensing:
-"	Copyright ©2011 
+"	Copyright ©2014 
 "	<MIT License>http://www.opensource.org/licenses/mit-license.php
 "
 " @resources&credits:
@@ -20,11 +20,27 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ""GENERAL OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible 
-autocmd!
-call pathogen#runtime_append_all_bundles() "Every plugin is in ~/.vim/bundle/ 
-call pathogen#helptags()
-filetype plugin indent on
+set nocompatible              " be iMproved
+" Bundle conf
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+" Custom Bundles
+Bundle 'bling/vim-airline'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'kien/ctrlp.vim'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/nginx.vim'
+Bundle 'vim-scripts/taglist.vim'
+" EOF Custom bundles
+
+filetype plugin indent on     " EOF Bundle conf
 
 "Indenting options
 set ai "Auto ident
@@ -40,7 +56,7 @@ syntax on
 
 if has("autocmd")
 	" When vimrc is edited, reload it
-	autocmd! bufwritepost vimrc source ~/.vim/vimrc
+	autocmd! bufwritepost .vimrc source ~/.vim/.vimrc
 
 	" Syntax of these languages is fussy over tabs Vs spaces
 	autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -108,6 +124,29 @@ set smartcase
 set foldmethod=indent
 set foldnestmax=3
 
+"Onmi Completion options
+set ofu=syntaxcomplete#Complete
+
+set hlsearch "Highlight search things
+set wildignore=*.obj,*.exe,*.pyc,*.pyo,*.pyx,*.*~,*.sw* 
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+"Error managing
+set visualbell
+set errorbells
+
+"delayed super cow powers
+cmap w!! %!sudo tee > /dev/null %
+
+"Persistent undo
+set undodir=$HOME/.vim/undo
+set undofile 
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+
 ""KEYBOARD OPTIONS""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Leader configuration
 let mapleader = ","
@@ -120,7 +159,7 @@ nmap <leader>p "+gP<CR>
 nmap <leader>l :set list!<CR>
 
 "rapid Vim/gvim edit
-nmap <leader>v :edit ~/.vim/vimrc<CR>
+nmap <leader>v :edit ~/.vim/.vimrc<CR>
  
 "tagbar toogle
 nmap <leader>o :TagbarToggle <CR>
@@ -150,36 +189,18 @@ nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+" cycle through errors
+map <C-n> :ce<cr>
+map <C-N> :cn<cr>
 
-"Onmi Completion options
-set ofu=syntaxcomplete#Complete
 
-set hlsearch "Highlight search things
-set wildignore=*.obj,*.exe,*.pyc,*.pyo,*.pyx,*.*~,*.sw* 
-
-"Error managing
-set visualbell
-set errorbells
-
-"delayed super cow powers
-cmap w!! %!sudo tee > /dev/null %
-
-"Persistent undo
-set undodir=.
-set undofile 
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+""PLUGINS CONFIGURATION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol = '▸'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '~'
-let g:syntastic_style_warning_symbol='-'
-" cycle through errors
-map <C-n> :ce<cr>
-map <C-N> :cn<cr>
+let g:syntastic_style_error_symbol = '!'
+let g:syntastic_style_warning_symbol='~'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1

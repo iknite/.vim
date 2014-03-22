@@ -11,7 +11,7 @@ gvim=`which gvim 2>&1`
 if [ $? -ne 0 ]; then
 	echo "Installing GVIM"
 	case $( uname -s ) in
-		Linux) sudo apt-get -y install vim-gnome;;
+		Linux) sudo apt-get -y install vim-gtk exuberant-ctags;;
 
 		Darwin) 
 			brew=`which brew 2>&1`
@@ -20,6 +20,7 @@ if [ $? -ne 0 ]; then
 				exit 1
 			fi
 			brew install macvim --override-system-vim
+			brew install ctags-exuberant
 		;;
 
 		*) echo 'Unsupported system install'; exit 1;;
@@ -28,11 +29,10 @@ fi
 
 echo "Installing vim config"
 rm -rf ~/.vim ~/.vimrc /.gvimrc
-git clone git@github.com:iknite/vimconfig.git ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc
-ln -s ~/.vim/gvimrc ~/.gvimrc
+git clone git@github.com:iknite/.vim.git
+ln -s ~/.vim/.vimrc ~/.vimrc
 cd ~/.vim
-git submodule sync
-git submodule init
-git submodule update
+git submodule update -i
+vim +BundleInstall +qall
+
 echo "**DONE** Did you found the Treasure of Mêlée Island™?"

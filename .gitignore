@@ -1,5 +1,7 @@
 .DS_Store
-*.*~
 *.swp
 *.swo
 .netrwhist
+bundle/*
+!bundle/vundle
+

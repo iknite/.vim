@@ -4,6 +4,6 @@
 Check install.sh for details about installation. 
 
 ----
-iknite @ 2013
-v0.6
+iknite @ 2014
+v0.1.7
 

@@ -1,27 +1,3 @@
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
-
-[submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = git@github.com:scrooloose/nerdcommenter.git
-
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = git@github.com:scrooloose/syntastic.git
-
-[submodule "bundle/sparkup"]
-	path = bundle/sparkup
-	url = git@github.com:tristen/vim-sparkup.git
-
-[submodule "bundle/vim-airline"]
-	path = bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
-
-[submodule "bundle/vim-virtualenv"]
-	path = bundle/vim-virtualenv
-	url = git@github.com:jmcantrell/vim-virtualenv.git
-
-[submodule "bundle/ctrlp.vim"]
-	path = bundle/ctrlp.vim
-	url = git@github.com:kien/ctrlp.vim.git
+[submodule "bundle/vundle"]
+	path = bundle/vundle
+	url = git@github.com:gmarik/Vundle.git
