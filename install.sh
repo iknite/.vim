@@ -11,7 +11,7 @@ gvim=`which gvim 2>&1`
 if [ $? -ne 0 ]; then
 	echo "Installing GVIM"
 	case $( uname -s ) in
-		Linux) sudo apt-get -y install vim-gtk exuberant-ctags;;
+		Linux) sudo apt-get -y install vim-nox exuberant-ctags;;
 
 		Darwin) 
 			brew=`which brew 2>&1`

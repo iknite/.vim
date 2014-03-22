@@ -132,7 +132,6 @@ set wildignore=*.obj,*.exe,*.pyc,*.pyo,*.pyx,*.*~,*.sw*
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-
 "Error managing
 set visualbell
 set errorbells
@@ -196,12 +195,19 @@ map <C-N> :cn<cr>
 
 ""PLUGINS CONFIGURATION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:syntastic_check_on_open=1
+"syntastic
+augroup mine
+    au BufWinEnter * sign define mysign
+    au BufWinEnter * exe "sign place 1337 line=1 name=mysign buffer=" . bufnr('%')
+augroup END
+highlight SignColumn guibg=bg ctermbg=bg
+let g:syntastic_check_on_open=0
 let g:syntastic_error_symbol = '▸'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '!'
+let g:syntastic_style_error_symbol = '§'
 let g:syntastic_style_warning_symbol='~'
 
+"airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#left_sep = ''
