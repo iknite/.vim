@@ -1,5 +1,5 @@
 # Install:
-	curl https://raw.github.com/iknite/vimconfig/master/install.sh | sh
+	curl https://raw.github.com/iknite/.vim/master/install.sh | sh
 	#enjoy
 Check install.sh for details about installation. 
 
