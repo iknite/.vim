@@ -32,7 +32,7 @@ rm -rf ~/.vim ~/.vimrc /.gvimrc
 git clone git@github.com:iknite/.vim.git
 ln -s ~/.vim/.vimrc ~/.vimrc
 cd ~/.vim
-git submodule update -i
+git submodule update --init
 vim +BundleInstall +qall
 
 echo "**DONE** Did you found the Treasure of Mêlée Island™?"
