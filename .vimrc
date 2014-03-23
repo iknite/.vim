@@ -201,6 +201,7 @@ augroup mine
     au BufWinEnter * exe "sign place 1337 line=1 name=mysign buffer=" . bufnr('%')
 augroup END
 highlight SignColumn guibg=bg ctermbg=bg
+
 let g:syntastic_check_on_open=0
 let g:syntastic_error_symbol = '▸'
 let g:syntastic_warning_symbol='⚠'
