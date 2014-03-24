@@ -29,7 +29,7 @@ fi
 
 echo "Installing vim config"
 rm -rf ~/.vim ~/.vimrc /.gvimrc
-git clone git@github.com:iknite/.vim.git
+git clone https://github.com/iknite/.vim.git
 ln -s ~/.vim/.vimrc ~/.vimrc
 cd ~/.vim
 git submodule update --init
