@@ -3,7 +3,7 @@
 Check install.sh for details about installation. 
 
 ## wget
-	wget -qO https://raw.github.com/iknite/.vim/master/install.sh | sh
+	wget -qO- https://raw.github.com/iknite/.vim/master/install.sh | sh
 	#enjoy
 
 ## curl
