@@ -3,29 +3,26 @@
 
 git=`which git 2>&1`
 if [ $? -ne 0 ]; then
-	echo "Please install `git` before continue :-("
+	echo "Please install git before continue :-("
 	exit 1
 fi
 
-gvim=`which gvim 2>&1`
-if [ $? -ne 0 ]; then
-	echo "Installing GVIM"
-	case $( uname -s ) in
-		Linux) sudo apt-get -y install vim-nox exuberant-ctags;;
 
-		Darwin) 
-			brew=`which brew 2>&1`
-			if [ $? -ne 0 ]; then
-				echo 'Please install `brew` before continue :-('
-				exit 1
-			fi
-			brew install macvim --override-system-vim
-			brew install ctags-exuberant
-		;;
+case $( uname -s ) in
+	Linux) sudo apt-get -y install vim-nox exuberant-ctags;;
 
-		*) echo 'Unsupported system install'; exit 1;;
-	esac
-fi
+	Darwin) 
+		brew=`which brew 2>&1`
+		if [ $? -ne 0 ]; then
+			echo 'Please install brew before continue :-('
+			exit 1
+		fi
+		brew install macvim --override-system-vim
+		brew install ctags-exuberant
+	;;
+
+	*) echo 'Unsupported system install'; exit 1;;
+esac
 
 echo "Installing vim config"
 rm -rf ~/.vim ~/.vimrc /.gvimrc
