@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " @author: Enrique Paredes
 " @version:0.1.7
 "
@@ -29,7 +29,6 @@ Bundle 'gmarik/vundle'
 
 " Custom Bundles
 Bundle 'bling/vim-airline'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -71,36 +70,33 @@ if has("autocmd")
 	" Treat .rss files as XML
 	autocmd BufNewFile,BufRead *.rss setfiletype xml
 	
-	"JAVASCRIPT SECTION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd FileType javascript setl fen
 	autocmd FileType javascript setl nocindent
 	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-	"autocmd FileType javascript inoremap <buffer> $r return
-	"autocmd FileType javascript inoremap <buffer> $f //--- PH -----------------
+
+	autocmd BufNewFile,BufRead .exports,.aliases,.functions set filetype=sh
 endif
 
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
 	set guioptions-=m
 	set guioptions-=r
-	colorscheme Tomorrow-Night-Eighties
 	if has("gui_gtk2")
 		set guifont=Source\ Code\ Pro\ Semibold\ 10,Droid\ Sans\ Mono\ 10
 	else
 		set guifont=Source\ Code\ Pro\ Semibold:h13,Monaco:h14
 	end
 	set linespace=-1
-	set colorcolumn=81
-	"match ErrorMsg '\%>100v.\+'
-
-	set mouse=a "Mouse Configuration
-	set mousefocus
 else
 	set t_Co=256
-	colorscheme Tomorrow-Night-Eighties
 endif
 
+set mouse=a "Mouse Configuration
+set mousefocus
+colorscheme Tomorrow-Night-Eighties
+set colorcolumn=81
+match ErrorMsg '\%<85v.\%>81v'
 " Coloring Options
 set background=dark 
 set list!
@@ -116,13 +112,15 @@ set wildmode=list:longest
 set cursorline
 set ttyfast
 set number
+set modeline
+set modelines=5
 
 "SEARCH OPTIONS
 set incsearch
 set smartcase
 
-set foldmethod=indent
-set foldnestmax=3
+"set foldmethod=indent
+"set foldnestmax=3
 
 "Onmi Completion options
 set ofu=syntaxcomplete#Complete
@@ -151,6 +149,8 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 let mapleader = ","
 let g:mapleader = ","
 
+
+
 "Shortcut to outside paste
 nmap <leader>p "+gP<CR>
 
@@ -171,7 +171,8 @@ map <C-s> :w<CR>
 "map <C-w> :bd<CR>
 
 " Close the current buffer
-map <leader>d :bdelete<cr>
+map <leader>b :bdelete!<CR>
+nmap <leader>q :qall<CR>
 
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
@@ -195,11 +196,10 @@ map <C-N> :cn<cr>
 
 ""PLUGINS CONFIGURATION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"CtrlP
+let g:ctrlp_show_hidden=1
+
 "syntastic
-augroup mine
-    au BufWinEnter * sign define mysign
-    au BufWinEnter * exe "sign place 1337 line=1 name=mysign buffer=" . bufnr('%')
-augroup END
 highlight SignColumn guibg=bg ctermbg=bg
 
 let g:syntastic_check_on_open=0
