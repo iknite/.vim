@@ -30,13 +30,14 @@ Bundle 'gmarik/vundle'
 " Custom Bundles
 Bundle 'bling/vim-airline'
 Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'kien/ctrlp.vim'
+Bundle 'wincent/command-t'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/nginx.vim'
 Bundle 'vim-scripts/taglist.vim'
+Bundle "ekalinin/Dockerfile.vim"
 " EOF Custom bundles
 
 filetype plugin indent on     " EOF Bundle conf
@@ -171,8 +172,8 @@ map <C-s> :w<CR>
 "map <C-w> :bd<CR>
 
 " Close the current buffer
-map <leader>b :bdelete!<CR>
-nmap <leader>q :qall<CR>
+map <leader>d :bdelete!<CR>
+nmap <leader>q :qall!<CR>
 
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
@@ -181,7 +182,7 @@ map <leader>ba :1,300 bd!<cr>
 map <C-j> :bn<cr>
 map <C-k> :bp<cr>
 
-" CTRL+C, CTRL+V
+" CTRL+C, CTRL+V:;
 vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>
 
@@ -192,6 +193,9 @@ inoremap kj <Esc>
 " cycle through errors
 map <C-n> :ce<cr>
 map <C-N> :cn<cr>
+
+" sorry Ex commands bye bye
+nnoremap ; :
 
 
 ""PLUGINS CONFIGURATION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
