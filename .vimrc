@@ -197,6 +197,9 @@ map <C-N> :cn<cr>
 " sorry Ex commands bye bye
 nnoremap ; :
 
+" add some finger love to CommandT
+map <C-a> :CommandTFlush <cr>\|:CommandT<cr>
+
 
 ""PLUGINS CONFIGURATION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
