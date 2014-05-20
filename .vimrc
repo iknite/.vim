@@ -96,8 +96,8 @@ endif
 set mouse=a "Mouse Configuration
 set mousefocus
 colorscheme Tomorrow-Night-Eighties
-set colorcolumn=81
-match ErrorMsg '\%<85v.\%>81v'
+"set colorcolumn=81
+match ErrorMsg '\%<83v.\%>81v'
 " Coloring Options
 set background=dark 
 set list!
