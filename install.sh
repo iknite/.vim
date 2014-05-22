@@ -35,7 +35,7 @@ cd ~/.vim &&
 	vim +BundleInstall +qall
 
 cd ~/.vim/bundle/command-t/ruby/command-t/ &&
-	ruby extconf.rb
+	ruby extconf.rb &&
 	make
 
 echo "**DONE** Did you found the Treasure of Mêlée Island™?"
