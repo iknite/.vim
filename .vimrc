@@ -39,6 +39,8 @@ Bundle 'vim-scripts/nginx.vim'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'chase/vim-ansible-yaml'
+Bundle 'jmcomets/vim-pony'
+Bundle 'tpope/vim-cucumber'
 " EOF Custom bundles
 
 filetype plugin indent on     " EOF Bundle conf
@@ -197,6 +199,7 @@ map <C-s> :w<CR>
 
 " Close the current buffer
 map <leader>d :bdelete!<CR>
+nmap <leader>q :qall!<CR>
 
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
