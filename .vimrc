@@ -6,7 +6,6 @@
 "	Configuration options for macvim + terminal optimization. 
 "
 " @licensing:
-"	Copyright ©2014 
 "	<MIT License>http://www.opensource.org/licenses/mit-license.php
 "
 " @resources&credits:
@@ -15,7 +14,7 @@
 "	:help
 "	http://amix.dk/vim/vimrc.html
 "	http://vimcasts.org/
-"	http://jonatkinson.co.uk/removing-toolbar-macvim/ 
+"   Those anonymus guys I always forget to reference here. 
 "	"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -41,6 +40,8 @@ Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'jmcomets/vim-pony'
 Bundle 'tpope/vim-cucumber'
+Bundle 'sjl/vitality.vim'
+Bundle 'wikitopian/hardmode'
 " EOF Custom bundles
 
 filetype plugin indent on     " EOF Bundle conf
@@ -65,7 +66,7 @@ set colorcolumn=81
 match ErrorMsg '\%<101v.\%>100v'
 " Coloring Options
 set background=dark 
-set list!
+set list
 "set fu "fullscreen mode
 
 set encoding=utf-8
@@ -145,12 +146,16 @@ if has("autocmd")
 	" to run commands there.
 	autocmd! CmdwinEnter * :unmap <cr>
 	autocmd! CmdwinLeave * :call MapCR()
+
+	" Autosave!
+	autocmd BufLeave,FocusLost * if expand('%') != '' | update | endif
 endif
 
 function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
 endfunction
 call MapCR()
+
 
 if has("gui_running") " Graphical editor running
 	set guioptions-=T
@@ -273,3 +278,5 @@ let g:bufferline_echo=0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
+" Hard{core,mode} vim!
+map <leader>h :call ToggleHardMode()<CR>
