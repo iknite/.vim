@@ -42,6 +42,7 @@ Bundle 'jmcomets/vim-pony'
 Bundle 'tpope/vim-cucumber'
 Bundle 'sjl/vitality.vim'
 Bundle 'wikitopian/hardmode'
+Bundle 'moll/vim-bbye'
 " EOF Custom bundles
 
 filetype plugin indent on     " EOF Bundle conf
@@ -86,8 +87,9 @@ set modelines=5
 set incsearch
 set smartcase
 
-set foldmethod=manual
+set foldmethod=indent
 set foldnestmax=3
+set foldlevel=99
 
 "Onmi Completion options
 set ofu=syntaxcomplete#Complete
@@ -183,6 +185,15 @@ map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
 
+
+" window management
+map <leader>s <C-w>s
+map <leader>v <C-w>v
+map <leader>h <C-w>h
+map <leader>j <C-w>j
+map <leader>k <C-w>k
+map <leader>l <C-w>l
+
 "Shortcut to outside paste
 nmap <leader>p "+p<CR>
 
@@ -190,20 +201,20 @@ nmap <leader>p "+p<CR>
 nmap <leader>l :set list!<CR>
 
 "rapid .vimrc edit
-nmap <leader>v :edit ~/.vim/.vimrc<CR>
+nmap <leader>V :edit ~/.vim/.vimrc<CR>
  
 "tagbar toogle
 nmap <leader>o :TagbarToggle <CR>
 
 "NerdTree
-nmap <leader>e :NERDTreeToggle <CR>
+nmap <leader>t :NERDTreeToggle <CR>
 
 " Normalized shortcuts
 map <C-s> :w<CR>
 "map <C-w> :bd<CR>
 
 " Close the current buffer
-map <leader>d :bdelete!<CR>
+map <leader>d :Bdelete!<CR>
 nmap <leader>q :qall!<CR>
 
 " Close all the buffers
@@ -228,7 +239,7 @@ map <C-N> :cn<cr>
 nnoremap ; :
 
 " add some finger love to CommandT
-map <C-a> :CommandTFlush <cr>\|:CommandT<cr>
+map <leader>f :CommandTFlush <cr>\|:CommandT<cr>
 
 
 function! InsertTabWrapper()
