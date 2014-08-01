@@ -1,25 +1,12 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" @author: Enrique Paredes
-" @version:0.1.7
-"
-" @description: 
-"	Configuration options for macvim + terminal optimization. 
-"
+" @copyright: Enrique Paredes
 " @licensing:
-"	<MIT License>http://www.opensource.org/licenses/mit-license.php
+"    <MIT License>http://www.opensource.org/licenses/mit-license.php
 "
-" @resources&credits:
-"	http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-line/
-"	http://vimcasts.org/e/27
-"	:help
-"	http://amix.dk/vim/vimrc.html
-"	http://vimcasts.org/
-"   Those anonymus guys I always forget to reference here. 
-"	"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ""GENERAL OPTIONS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved
+set nocompatible
 " Bundle conf
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -27,130 +14,144 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Custom Bundles
+Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'Shougo/neocomplete.vim'
+" Bundle 'akracun/vitality.vim'
 Bundle 'bling/vim-airline'
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'wincent/command-t'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/nginx.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'ekalinin/Dockerfile.vim'
+Bundle 'burnettk/vim-angular'
 Bundle 'chase/vim-ansible-yaml'
-Bundle 'jmcomets/vim-pony'
-Bundle 'tpope/vim-cucumber'
-Bundle 'sjl/vitality.vim'
-Bundle 'wikitopian/hardmode'
+" Bundle 'davidhalter/jedi-vim'
+Bundle 'godlygeek/tabular'
+Bundle 'joeytwiddle/vim-multiple-cursors'
+Bundle 'mattn/emmet-vim'
 Bundle 'moll/vim-bbye'
-" EOF Custom bundles
+Bundle 'rking/ag.vim'
+" Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'sheerun/vim-polyglot'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-vinegar'
+Bundle 'wikitopian/hardmode'
 
-filetype plugin indent on     " EOF Bundle conf
+filetype plugin indent on         " EOF Bundle conf
+syntax enable
+set shortmess+=I
 
-set autoread
+set autoread                      " Update when changed from outside
+set autoindent                    " Indenting options
+set smartindent
+set ruler                         " show the cursor position all the time
+set ts=4 sts=4 sw=4 expandtab     " Default tab flavour
+set smarttab
+set laststatus=2                  " Allways show status in bar
 
-"Indenting options
-set ai "Auto ident
-set si "smart Indent
+set backspace=indent,eol,start    " Normalize backspacing between os.
 
-set ruler " show the cursor position all the time
-set ts=4
-set sw=4
-set sts=4
-set noexpandtab
-set laststatus=2
-syntax on
-set mouse=a "Mouse Configuration
+set mouse=a                       " Mouse Configuration
 set mousefocus
+
 colorscheme Tomorrow-Night-Eighties
 set colorcolumn=81
 match ErrorMsg '\%<101v.\%>100v'
-" Coloring Options
+
+set t_Co=256                        " Coloring Options
 set background=dark 
-set list
-"set fu "fullscreen mode
 
 set encoding=utf-8
-set scrolloff=3
+set scrolloff=5
+set sidescrolloff=5
 set showmode
 set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-set cursorline
+set nocursorline
 set ttyfast
 set number
-set modeline
-set modelines=5
+set relativenumber
+set nomodeline                      " disable commands inside files
+set modelines=0
 
-"SEARCH OPTIONS
-set incsearch
+set ttimeout                        " Set time to check commands
+set ttimeoutlen=100
+
+set incsearch                       " SEARCH OPTIONS
 set smartcase
+
+set display+=lastline               " 
 
 set foldmethod=indent
 set foldnestmax=3
 set foldlevel=99
 
-"Onmi Completion options
-set ofu=syntaxcomplete#Complete
+" set ofu=syntaxcomplete#Complete     " Onmi Completion options
+set complete-=i                     " disable onmi to search in current path
 
-set hlsearch "Highlight search things
+set hlsearch                        " Highlight search things
 set wildignore=*.obj,*.exe,*.pyc,*.pyo,*.pyx,*.*~,*.sw* 
 
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
-"Error managing
-set visualbell
+set list
+set listchars=tab:▸\ ,eol:¬,nbsp:⍽  " Use the nice symbols for tabstops and EOL
+
+set visualbell                      " Error managing
 set errorbells
 
-"delayed super cow powers
-cmap w!! %!sudo tee > /dev/null %
+set undofile                        " Persistent undo
+set undodir=$HOME/.vim/undo         " folder to store changes
+set undolevels=1000                 " changes that can be undone
+set undoreload=10000                " lines to save on a buffer reload
 
-"Persistent undo
-set undodir=$HOME/.vim/undo
-set undofile 
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-
-"no backups
-set nobackup
+set nobackup                        " no backups at all. It should be in CVS.
+set noswapfile
 set nowritebackup
 
-set t_ti= t_te=
-
 if has("autocmd")
-	" When vimrc is edited, reload it
-	autocmd! bufwritepost .vimrc source ~/.vim/.vimrc
+    " When vimrc is edited, reload it
+    autocmd! bufwritepost .vimrc source ~/.vim/.vimrc
 
-	" help last-position-jump
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
-		\	exe "normal! g`\"" | endif
+    " help last-position-jump
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
+        \    exe "normal! g`\"" | endif
+    
+    " start in a scratch buffer
+    au VimEnter * if empty(expand('%')) | set buftype=nofile | endif
+    
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-	" Syntax of these languages is fuzzy over tabs Vs spaces
-	autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    " Autosave!
+    autocmd BufLeave,FocusLost * if expand('%') != '' | update | endif
 
-	" Customisations based my personal taste
-	autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
-	autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab
-	autocmd FileType css setlocal ts=2 sts=2 sw=2 noexpandtab
-	autocmd FileType python setlocal ts=4 sw=4 sts=4 expandtab
+    " Syntax of these languages is fuzzy over tabs Vs spaces
+    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType cucumber setlocal ts=4 sw=4 sts=4 expandtab
 
-	" Treat .rss files as XML
-	autocmd BufNewFile,BufRead *.rss setfiletype xml
+    " Customizations based on my personal taste
+    autocmd FileType python setlocal ts=4 sw=4 sts=4 expandtab
+    autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
+    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab nowrap
+    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
 
-	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
-	autocmd FileType javascript setl fen
-	autocmd FileType javascript setl nocindent
-	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    " Onmicompletion
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-	" Leave the return key alone when in command line windows, since it's used
-	" to run commands there.
-	autocmd! CmdwinEnter * :unmap <cr>
-	autocmd! CmdwinLeave * :call MapCR()
+    " Leave the return key alone when in command line windows, since it's used
+    " to run commands there.
+    autocmd! CmdwinEnter * :unmap <cr>
+    autocmd! CmdwinLeave * :call MapCR()
 
-	" Autosave!
-	autocmd BufLeave,FocusLost * if expand('%') != '' | update | endif
+    " Nice commands output.
+    autocmd VimEnter * :set t_ti= t_te=
+    " review the below line with the info in :help restorescreen
+    autocmd VimLeave * :set t_ti=7[r[?47h t_te=[?47l8
 endif
 
 function! MapCR()
@@ -158,60 +159,60 @@ function! MapCR()
 endfunction
 call MapCR()
 
-
 if has("gui_running") " Graphical editor running
-	set guioptions-=T
-	set guioptions-=m
-	set guioptions-=r
-	if has("gui_gtk2")
-		set guifont=Source\ Code\ Pro\ Semibold\ 10,Droid\ Sans\ Mono\ 10
-	else
-		set guifont=Source\ Code\ Pro\ Semibold:h13,Monaco:h14
-	end
-	set linespace=-1
-else
-	set t_Co=256
+    set guioptions-=T
+    set guioptions-=m
+    set guioptions-=r
+    if has("gui_gtk2")
+        set guifont=Source\ Code\ Pro\ Semibold\ 10,Droid\ Sans\ Mono\ 10
+    else
+        set guifont=Source\ Code\ Pro\ Semibold:h13,Monaco:h14
+    end
+    set linespace=-1
 endif
 
+runtime! macros/matchit.vim
 
-""KEYBOARD OPTIONS""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""KEYBOARD MAPS"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" enhance sometimes dumb fingers overriding ex commands
+nnoremap ; :
+
+" Treat long lines as break lines (breaks relativenumber count)
+" nmap j gj
+" nmap k gk
+
+
 "Leader configuration
 let mapleader = ","
 let g:mapleader = ","
 
-""ARROW KEYS ARE UNACCEPTABLE"""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
-
+" Break shit habits
+imap <Left> <Nop>
+imap <Right> <Nop>
+imap <Up> <Nop>
+imap <Down> <Nop>
 
 " window management
-map <leader>s <C-w>s
-map <leader>v <C-w>v
-map <leader>h <C-w>h
-map <leader>j <C-w>j
-map <leader>k <C-w>k
-map <leader>l <C-w>l
+map <leader>s <C-w>s<C-w>j
+map <leader>v <C-w>v<C-w>l
 
-"Shortcut to outside paste
+" buffer cycling
+map <C-j> :bn<cr>
+map <C-k> :bp<cr>
+
+"Shortcut to paste from outside vim
 nmap <leader>p "+p<CR>
-
-"Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
 
 "rapid .vimrc edit
 nmap <leader>V :edit ~/.vim/.vimrc<CR>
- 
-"tagbar toogle
-nmap <leader>o :TagbarToggle <CR>
 
-"NerdTree
-nmap <leader>t :NERDTreeToggle <CR>
+" Normalized escape
+imap <C-c> <esc>
+imap <C-s> :w<CR>
 
-" Normalized shortcuts
-map <C-s> :w<CR>
-"map <C-w> :bd<CR>
+"delayed super cow powers
+cmap w!! %!sudo tee > /dev/null %
 
 " Close the current buffer
 map <leader>d :Bdelete!<CR>
@@ -219,40 +220,7 @@ nmap <leader>q :qall!<CR>
 
 " Close all the buffers
 map <leader>ba :1,300 bd!<cr>
-
-" Cycle throught buffers
-map <C-j> :bn<cr>
-map <C-k> :bp<cr>
-
-imap <c-c> <esc>
 nnoremap <leader><leader> <c-^>
-
-" Smash escape
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-" cycle through errors
-map <C-n> :ce<cr>
-map <C-N> :cn<cr>
-
-" sorry Ex commands bye bye
-nnoremap ; :
-
-" add some finger love to CommandT
-map <leader>f :CommandTFlush <cr>\|:CommandT<cr>
-
-
-function! InsertTabWrapper()
-	" Indent if we're at the beginning of a line. Else, do completion.
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
 
 function! RenameFile()
     let old_name = expand('%')
@@ -268,12 +236,10 @@ map <leader>n :call RenameFile()<cr>
 
 ""PLUGINS CONFIGURATION"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"CtrlP
-let g:ctrlp_show_hidden=1
+"NerdTree
+nmap <leader>t :NERDTree<CR>
 
 "syntastic
-highlight SignColumn guibg=bg ctermbg=bg
-
 let g:syntastic_check_on_open=0
 let g:syntastic_error_symbol = '▸'
 let g:syntastic_warning_symbol='⚠'
@@ -290,4 +256,32 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
 " Hard{core,mode} vim!
-map <leader>h :call ToggleHardMode()<CR>
+map <leader>H :call ToggleHardMode()<CR>
+
+" Tabularize
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+" selecta
+nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+function! SelectaCommand(choice_command, selecta_args, vim_command)
+  try
+    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/:q
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  exec a:vim_command . " " . selection
+endfunction
