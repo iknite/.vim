@@ -32,7 +32,7 @@ Bundle 'sheerun/vim-polyglot'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-vinegar'
+" Bundle 'tpope/vim-vinegar'
 Bundle 'wikitopian/hardmode'
 
 filetype plugin indent on         " EOF Bundle conf
@@ -53,7 +53,7 @@ set mouse=a                       " Mouse Configuration
 set mousefocus
 
 colorscheme Tomorrow-Night-Eighties
-set colorcolumn=81
+set colorcolumn=119
 match ErrorMsg '\%<101v.\%>100v'
 
 set t_Co=256                        " Coloring Options
@@ -129,19 +129,8 @@ if has("autocmd")
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType cucumber setlocal ts=4 sw=4 sts=4 expandtab
 
-    " Customizations based on my personal taste
-    autocmd FileType python setlocal ts=4 sw=4 sts=4 expandtab
-    autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab nowrap
-    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-
-    " Onmicompletion
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    " Customizations 
+    autocmd FileType html setlocal nowrap
 
     " Leave the return key alone when in command line windows, since it's used
     " to run commands there.
@@ -152,6 +141,7 @@ if has("autocmd")
     autocmd VimEnter * :set t_ti= t_te=
     " review the below line with the info in :help restorescreen
     autocmd VimLeave * :set t_ti=7[r[?47h t_te=[?47l8
+
 endif
 
 function! MapCR()
@@ -272,11 +262,10 @@ function! s:align()
 endfunction
 
 " selecta
-nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
 function! SelectaCommand(choice_command, selecta_args, vim_command)
   try
     silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/:q
+  catch /Vim:Interrupt/
     " Swallow the ^C so that the redraw below happens; otherwise there will be
     " leftovers from selecta on the screen
     redraw!
@@ -285,3 +274,9 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   redraw!
   exec a:vim_command . " " . selection
 endfunction
+
+function! SelectaFile(path)
+  call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
+endfunction
+
+nnoremap <leader>f :call SelectaFile(".")<cr>
