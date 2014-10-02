@@ -34,6 +34,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-unimpaired'
 " Bundle 'tpope/vim-vinegar'
 Bundle 'wikitopian/hardmode'
+Bundle 'wincent/command-t'
 
 filetype plugin indent on         " EOF Bundle conf
 syntax enable
@@ -132,11 +133,6 @@ if has("autocmd")
     " Customizations 
     autocmd FileType html setlocal nowrap
 
-    " Leave the return key alone when in command line windows, since it's used
-    " to run commands there.
-    autocmd! CmdwinEnter * :unmap <cr>
-    autocmd! CmdwinLeave * :call MapCR()
-
     " Nice commands output.
     autocmd VimEnter * :set t_ti= t_te=
     " review the below line with the info in :help restorescreen
@@ -144,10 +140,6 @@ if has("autocmd")
 
 endif
 
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
 
 if has("gui_running") " Graphical editor running
     set guioptions-=T
@@ -177,19 +169,13 @@ nnoremap ; :
 let mapleader = ","
 let g:mapleader = ","
 
-" Break shit habits
-imap <Left> <Nop>
-imap <Right> <Nop>
-imap <Up> <Nop>
-imap <Down> <Nop>
-
 " window management
-map <leader>s <C-w>s<C-w>j
-map <leader>v <C-w>v<C-w>l
+nmap <leader>s <C-w>s<C-w>j
+nmap <leader>v <C-w>v<C-w>l
 
 " buffer cycling
-map <C-j> :bn<cr>
-map <C-k> :bp<cr>
+nmap <C-j> :bn<cr>
+nmap <C-k> :bp<cr>
 
 "Shortcut to paste from outside vim
 nmap <leader>p "+p<CR>
@@ -199,17 +185,20 @@ nmap <leader>V :edit ~/.vim/.vimrc<CR>
 
 " Normalized escape
 imap <C-c> <esc>
-imap <C-s> :w<CR>
+imap <C-\> <esc>:w<CR>
+map <C-\> <esc>:w<CR>
+
+
 
 "delayed super cow powers
 cmap w!! %!sudo tee > /dev/null %
 
 " Close the current buffer
-map <leader>d :Bdelete!<CR>
+nmap <leader>d :Bdelete!<CR>
 nmap <leader>q :qall!<CR>
 
 " Close all the buffers
-map <leader>ba :1,300 bd!<cr>
+nmap <leader>ba :1,300 bd!<cr>
 nnoremap <leader><leader> <c-^>
 
 function! RenameFile()
@@ -228,6 +217,9 @@ map <leader>n :call RenameFile()<cr>
 
 "NerdTree
 nmap <leader>t :NERDTree<CR>
+ 
+"Command T 
+map <leader>f :CommandTFlush <cr>\|:CommandT<cr>
 
 "syntastic
 let g:syntastic_check_on_open=0
@@ -261,22 +253,4 @@ function! s:align()
   endif
 endfunction
 
-" selecta
-function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
-endfunction
 
-function! SelectaFile(path)
-  call SelectaCommand("find " . a:path . "/* -type f", "", ":e")
-endfunction
-
-nnoremap <leader>f :call SelectaFile(".")<cr>
