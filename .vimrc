@@ -22,6 +22,10 @@
     Bundle 'fatih/vim-go'
     Bundle 'joeytwiddle/vim-multiple-cursors'
     Bundle 'mattn/emmet-vim'
+
+    Bundle 'majutsushi/tagbar'
+    map <leader>m :TagbarToggle<CR>
+
     " Bundle 'moll/vim-bbye'
     Bundle 'rking/ag.vim'
     Bundle 'sheerun/vim-polyglot'
@@ -38,6 +42,7 @@
     let g:bufferline_echo=0
     let g:airline_left_sep = ''
     let g:airline_right_sep = ''
+    let g:syntastic_python_checkers = ['flake8']
 
     Bundle 'godlygeek/tabular'
     inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
