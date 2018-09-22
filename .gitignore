@@ -6,3 +6,5 @@ bundle/*
 !bundle/vundle
 undo/*
 !undo/ABOUT.md
+autoload
+plug

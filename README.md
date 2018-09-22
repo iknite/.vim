@@ -1,17 +1,5 @@
-# Install:
-
-
-Check install.sh for details about installation. 
-
-## wget
-	wget -qO- https://raw.github.com/iknite/.vim/master/install.sh | sh
-	#enjoy
-
-## curl
-	curl https://raw.github.com/iknite/.vim/master/install.sh | sh
-	#enjoy
+I found the Treasure of Mêlée Island™ and all I get is this stupid vim config
 
 ----
-iknite @ 2014
-v0.1.7
-
+iknite @ 2010-2018
+v0.2.0
