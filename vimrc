@@ -21,12 +21,18 @@ call plug#begin('~/.vim/plug')
 
     Plug 'Lokaltog/vim-easymotion'
 
+    Plug 'tpope/vim-surround'
+
     " Plug 'Shougo/neocomplete.vim'
 
     " Make Vim play nicely with iTerm 2 and tmux
     " Plug 'akracun/vitality.vim'
 
+
     Plug 'chase/vim-ansible-yaml'
+
+    " Handles bracketed-paste-mode in vim (aka. automatic `:set paste`)
+    Plug  'ConradIrwin/vim-bracketed-paste'
 
     " Plug 'davidhalter/jedi-vim'
 
@@ -40,7 +46,7 @@ call plug#begin('~/.vim/plug')
 
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-        nmap <C-p> :FZF --no-sort --reverse --inline-info<cr>
+        nmap <C-p> :FZF --reverse --inline-info<cr>
 
     Plug 'mattn/emmet-vim'
 
@@ -61,13 +67,12 @@ call plug#begin('~/.vim/plug')
 
     Plug 'bling/vim-airline'
         let g:airline#extensions#tabline#enabled = 1
-        let g:airline_powerline_fonts=1
-        let g:airline#extensions#tabline#left_sep = ''
         let g:airline#extensions#tabline#left_alt_sep = ''
-        let g:bufferline_echo=0
+        let g:airline#extensions#tabline#left_sep = ''
         let g:airline_left_sep = ''
         let g:airline_right_sep = ''
-        let g:syntastic_python_checkers = ['flake8']
+        let g:airline_powerline_fonts=1
+        let g:bufferline_echo=0
 
     Plug 'godlygeek/tabular'
         inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -82,19 +87,26 @@ call plug#begin('~/.vim/plug')
           endif
         endfunction
 
-    Plug 'scrooloose/syntastic'
-        let g:syntastic_check_on_open=0
-        let g:syntastic_error_symbol = '▸'
-        let g:syntastic_warning_symbol='⚠'
-        let g:syntastic_style_error_symbol = '§'
-        let g:syntastic_style_warning_symbol='~'
-
     Plug 'Shougo/vimfiler.vim'
         let g:vimfiler_as_defaut_explorer = 1
         let g:vimfiler_safe_mode_by_default = 0
         map - :VimFiler<cr>
     
     Plug 'Shougo/Unite.vim'
+
+    Plug 'w0rp/ale'
+        let g:ale_sign_error = '▸'
+        let g:ale_sign_warning = '⚠'
+        let g:airline#extensions#ale#enabled = 1
+        let g:ale_fixers = {
+        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+        \   'go': ['gofmt', 'goimports']
+        \}
+        let g:ale_linters = {
+        \   'python': ['flake8'],
+        \   'go': ['golangci-lint']
+        \}
+
 
 call plug#end()
 filetype plugin indent on
